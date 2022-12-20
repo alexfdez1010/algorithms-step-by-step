@@ -82,8 +82,8 @@ def main():
         input_text = st.text_area("Input of the algorithm", height=500)
 
     if st.button("Run algorithm"):
-        
-        function = st.cache(algorithm_information[FUNCTION])
+
+        function = algorithm_information[FUNCTION]
 
         if random_generated:
 
