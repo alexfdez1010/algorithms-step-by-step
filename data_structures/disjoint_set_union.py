@@ -20,13 +20,11 @@ class DisjointSetUnion:
 
         return self.find(self._sets[x])
 
-    def union(self, x: int, y: int) -> None:
+    def union(self, x: int, y: int):
         """
         Merge the sets containing x and y. If x and y are already in the same set, does nothing.
         :param x: element
         :param y: element
-
-        :return: None
         """
         x = self.find(x)
         y = self.find(y)

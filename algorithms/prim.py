@@ -10,6 +10,11 @@ from queue import PriorityQueue
 
 
 def prim_algorithm(input_string: str) -> Optional[List[Union[str, Graph]]]:
+    """
+    Prim's algorithm is a greedy algorithm that finds a minimum spanning tree for a weighted undirected graph.
+    :param input_string: The string representation of the graph.
+    :return: A list with the elements to render in the frontend that represent the resolution of the algorithm.
+    """
 
     graph = input_to_adjacency_list(input_string, directed=False, weighted=True)
 

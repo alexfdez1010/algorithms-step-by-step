@@ -2,7 +2,15 @@ from random import randint, shuffle
 
 MAX_RANDOM_WEIGHT = 40
 
-def random_adjacency_list(n: int, m: int, weighted: bool = True, directed: bool = True) -> str:
+def random_graph(n: int, m: int, weighted: bool = True, directed: bool = True) -> str:
+    """
+    Create an input string for a random graph with n vertices and m edges.
+    :param n: number of vertices
+    :param m: number of edges
+    :param weighted: whether the graph is weighted
+    :param directed: whether the graph is directed
+    :return: input string for a random graph
+    """
     output = f"{n} {m}\n"
 
     if directed:
@@ -22,7 +30,15 @@ def random_adjacency_list(n: int, m: int, weighted: bool = True, directed: bool 
 
     return output
 
-def random_adjacency_list_only_one_component(n: int, m: int, weighted: bool = True, directed: bool = True) -> str:
+def random_graph_only_one_component(n: int, m: int, weighted: bool = True, directed: bool = True) -> str:
+    """
+    Create an input string for a random graph with n vertices and m edges that is connected.
+    :param n: number of vertices
+    :param m: number of edges
+    :param weighted: whether the graph is weighted
+    :param directed: whether the graph is directed
+    :return: input string for a random graph connected
+    """
 
     output = f"{n} {m}\n"
 

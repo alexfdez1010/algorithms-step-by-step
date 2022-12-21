@@ -9,6 +9,16 @@ def draw_graph(n: int, edges: List[Union[Tuple[int, int], Tuple[int, int, float]
                directed: bool = True,
                edges_selected: Set[Tuple[int,int]] = None) -> Graph:
 
+    """
+    Create a graphviz graph from a list of edges
+    :param n: number of nodes
+    :param edges: list of edges
+    :param weighted: whether the graph is weighted or not
+    :param directed: whether the graph is directed or not
+    :param edges_selected: set of edges to be highlighted, if is None, no edges will be highlighted
+    :return: graphviz graph
+    """
+
     if edges_selected is None:
         edges_selected = []
         color = "black"
@@ -43,6 +53,11 @@ def draw_graph(n: int, edges: List[Union[Tuple[int, int], Tuple[int, int, float]
     return graph
 
 def draw_disjoint_sets(disjoint_set: DisjointSetUnion) -> Digraph:
+    """
+    Create a graphviz graph from a disjoint set union data structure
+    :param disjoint_set: disjoint set union data structure
+    :return: graphviz graph
+    """
     graph = Digraph()
 
     for i in range(disjoint_set.size()):

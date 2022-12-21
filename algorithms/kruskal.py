@@ -8,6 +8,11 @@ from utils.graph_utils import input_to_adjacency_list, adjacency_list_to_list_of
 
 
 def kruskal_algorithm(input_graph: str) -> Optional[List[Union[str, Graph, Digraph]]]:
+    """
+    Kruskal's algorithm for finding the minimum spanning tree of a graph
+    :param input_graph: string representation of the graph
+    :return: A list with the elements to render in the frontend that represent the resolution of the algorithm.
+    """
 
     graph = input_to_adjacency_list(input_graph, directed=False, weighted=True)
 
@@ -23,6 +28,8 @@ def kruskal_algorithm(input_graph: str) -> Optional[List[Union[str, Graph, Digra
 
     edges_selected = set()
     total_weight = 0
+
+    edge_list = list(filter(lambda x: x[0] < x[1], edge_list))
 
     edge_list.sort(key=lambda x: x[2])
     yield "The edges of the graph sorted by weight are the following:"

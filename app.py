@@ -3,9 +3,7 @@ from typing import Any, List, Dict, Union
 import streamlit as st
 from graphviz import Graph
 
-from config import ALGORITHMS, RANDOM_INPUT_PARAMETERS, ParameterType, FUNCTION, RANDOM_GENERATE_FUNCTION, \
-    DESCRIPTION_FILE, DESCRIPTIONS_DIR, VALIDATION_INPUT_FUNCTION, RANDOM_PARAMETERS, VALIDATION_PARAMETERS, \
-    VALIDATION_RANDOM_PARAMETERS_FUNCTION
+from config import *
 
 IMAGE_SIDEBAR = "resources/sidebar.png"
 
@@ -15,12 +13,19 @@ MENU_ITEMS = {
 
 st.set_page_config(
     page_title="Algorithms",
-    page_icon=":book:",
+    page_icon="random",
     menu_items=MENU_ITEMS,
 )
 
-
 def parameter_input(parameter_name: str, parameter_information: List[Any]) -> Any:
+    """
+    Render a parameter input based on the information provided
+
+    :param parameter_name: Name of the parameter
+    :param parameter_information: Information about the parameter
+
+    :return: The value of the parameter
+    """
     parameter_type = parameter_information[0]
 
     if parameter_type in (ParameterType.INT, ParameterType.FLOAT):
@@ -41,17 +46,33 @@ def parameter_input(parameter_name: str, parameter_information: List[Any]) -> An
 
 
 def render_entry(entry: Union[str, Graph]):
+    """
+    Render an entry of the algorithm
+
+    :param entry: Entry to render
+    """
     if isinstance(entry, str):
         st.markdown(entry)
     else:
         st.graphviz_chart(entry, use_container_width=True)
 
 def render_solution(algorithm_function, input_text: str):
+    """
+    Render the solution of the algorithm
+
+    :param algorithm_function: Function to run the algorithm
+    :param input_text: Input of the algorithm
+    """
     for entry in algorithm_function(input_text):
         render_entry(entry)
 
+def create_sidebar():
 
-def main():
+    """
+    Create the sidebar of the application
+    :return: The selected algorithm from the sidebar
+    """
+
     with st.sidebar:
         st.image(IMAGE_SIDEBAR)
         st.title("Algorithms")
@@ -61,6 +82,14 @@ def main():
             algorithm_names,
             index=0
         )
+    return algorithm_selection
+
+
+def main():
+    """
+    Main function of the application
+    """
+    algorithm_selection = create_sidebar()
 
     algorithm_information = ALGORITHMS[algorithm_selection]
     st.title(algorithm_selection)
@@ -107,7 +136,6 @@ def main():
 
             else:
                 st.error(message)
-
 
 
 if __name__ == "__main__":

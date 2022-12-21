@@ -3,7 +3,7 @@ from typing import Dict, Any
 
 from algorithms.kruskal import kruskal_algorithm
 from algorithms.prim import prim_algorithm
-from random_generators.generator_graph import random_adjacency_list_only_one_component
+from random_generators.generator_graph import random_graph_only_one_component
 from validations.validate_graph import validate_only_one_component, validate_number_of_edges
 
 DESCRIPTIONS_DIR = "descriptions"
@@ -18,12 +18,28 @@ VALIDATION_RANDOM_PARAMETERS_FUNCTION = "validation_random_parameters"
 
 
 class ParameterType(Enum):
+    """
+    Enum for the type of the parameter
+    """
     INT = "int"
     FLOAT = "float"
     STRING = "string"
     BOOLEAN = "boolean"
 
 
+"""
+This is the dictionary that contains all the information about the algorithms
+The key is the name of the algorithm
+The value is a dictionary that contains the following keys:
+    - DESCRIPTION_FILE: the name of the file that contains the description of the algorithm
+    - FUNCTION: the function that implements the algorithm
+    - RANDOM_INPUT_PARAMETERS: the parameters of the random input function
+    - VALIDATION_RANDOM_PARAMETERS_FUNCTION: the function that validates the random parameters
+    - RANDOM_PARAMETERS: the parameters of the random input
+    - RANDOM_GENERATE_FUNCTION: the function that generates a random input for the algorithm
+    - VALIDATION_PARAMETERS: the parameters of the validation function
+    - VALIDATION_INPUT_FUNCTION: the function that validates the input
+"""
 ALGORITHMS: Dict[str, Dict[str, Any]] = {
     "Prim's Algorithm": {
         DESCRIPTION_FILE: "prim.md",
@@ -37,7 +53,7 @@ ALGORITHMS: Dict[str, Dict[str, Any]] = {
             "weighted": True,
             "directed": False
         },
-        RANDOM_GENERATE_FUNCTION: random_adjacency_list_only_one_component,
+        RANDOM_GENERATE_FUNCTION: random_graph_only_one_component,
         VALIDATION_PARAMETERS: {
             "directed": False,
             "weighted": True
@@ -56,7 +72,7 @@ ALGORITHMS: Dict[str, Dict[str, Any]] = {
             "weighted": True,
             "directed": False
         },
-        RANDOM_GENERATE_FUNCTION: random_adjacency_list_only_one_component,
+        RANDOM_GENERATE_FUNCTION: random_graph_only_one_component,
         VALIDATION_PARAMETERS: {
             "directed": False,
             "weighted": True
