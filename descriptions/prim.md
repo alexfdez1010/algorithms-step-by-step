@@ -9,6 +9,6 @@ Here's how the algorithm works:
    
 3. The resulting tree is the minimum spanning tree.
 
-The complexity of the best implementation of Prim's algorithm is O(E log V), where E is the number of edges and V is the number of vertices in the graph. This means that the algorithm's running time increases logarithmically with the number of vertices and linearly with the number of edges.
+The complexity of the best implementation of Prim's algorithm is O(E log E), where E is the number of edges and V is the number of vertices in the graph. This means that the algorithm's running time increases logarithmically with the number of vertices and linearly with the number of edges.
 
 In summary, Prim's algorithm is a simple and efficient way to find the minimum spanning tree for a weighted undirected graph.

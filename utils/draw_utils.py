@@ -1,6 +1,8 @@
 from typing import List, Union, Tuple, Set
 from graphviz import Digraph, Graph
 
+from data_structures.disjoint_set_union import DisjointSetUnion
+
 
 def draw_graph(n: int, edges: List[Union[Tuple[int, int], Tuple[int, int, float]]],
                weighted: bool = True,
@@ -37,5 +39,17 @@ def draw_graph(n: int, edges: List[Union[Tuple[int, int], Tuple[int, int, float]
                 graph.edge(str(edge[0]), str(edge[1]), label=str(edge[2]) if weighted else "", color="green")
             else:
                 graph.edge(str(edge[0]), str(edge[1]), label=str(edge[2]) if weighted else "", color=color)
+
+    return graph
+
+def draw_disjoint_sets(disjoint_set: DisjointSetUnion) -> Digraph:
+    graph = Digraph()
+
+    for i in range(disjoint_set.size()):
+        graph.node(str(i), shape="circle")
+
+    for (element, value) in enumerate(disjoint_set.sets):
+        if element != value:
+            graph.edge(str(element), str(value))
 
     return graph

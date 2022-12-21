@@ -13,9 +13,6 @@ def prim_algorithm(input_string: str) -> Optional[List[Union[str, Graph]]]:
 
     graph = input_to_adjacency_list(input_string, directed=False, weighted=True)
 
-    if graph is None:
-        return None
-
     edge_list = adjacency_list_to_list_of_edges(graph)
 
     yield "## Prim's algorithm resolution"
