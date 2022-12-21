@@ -88,22 +88,25 @@ def main():
         if random_generated:
 
             validation_function = algorithm_information.get(VALIDATION_RANDOM_PARAMETERS_FUNCTION, None)
+            is_correct, message = (True, None) if validation_function is None else validation_function(**parameters)
 
-            if validation_function is None or validation_function(**parameters):
+            if is_correct:
                 render_solution(function, input_text)
             else:
-                st.error("The input parameters are not valid")
+                st.error(message)
 
         else:
 
             validation_function = algorithm_information.get(VALIDATION_INPUT_FUNCTION, None)
             validation_parameters = algorithm_information.get(VALIDATION_PARAMETERS, {})
 
-            if validation_function is None or validation_function(input_text, **validation_parameters):
+            is_correct, message = (True, None) if validation_function is None else validation_function(input_text, **validation_parameters)
+
+            if is_correct:
                 render_solution(function, input_text)
 
             else:
-                st.error("Input is not valid")
+                st.error(message)
 
 
 

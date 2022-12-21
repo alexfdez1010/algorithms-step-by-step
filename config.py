@@ -30,7 +30,7 @@ ALGORITHMS: Dict[str, Dict[str, Any]] = {
         FUNCTION: prim_algorithm,
         RANDOM_INPUT_PARAMETERS: {
             "n": [ParameterType.INT, 3, 20],
-            "m": [ParameterType.INT, 4, 40]
+            "m": [ParameterType.INT, 2, 40]
         },
         VALIDATION_RANDOM_PARAMETERS_FUNCTION: validate_number_of_edges,
         RANDOM_PARAMETERS: {
