@@ -1,4 +1,4 @@
-from typing import Any, List, Dict, Union
+from typing import List, Union
 
 import streamlit as st
 from graphviz import Graph
@@ -10,12 +10,6 @@ IMAGE_SIDEBAR = "resources/sidebar.png"
 MENU_ITEMS = {
 
 }
-
-st.set_page_config(
-    page_title="Algorithms",
-    page_icon="random",
-    menu_items=MENU_ITEMS,
-)
 
 def parameter_input(parameter_name: str, parameter_information: List[Any]) -> Any:
     """
@@ -82,6 +76,7 @@ def create_sidebar():
             algorithm_names,
             index=0
         )
+
     return algorithm_selection
 
 
@@ -89,6 +84,13 @@ def main():
     """
     Main function of the application
     """
+    st.set_page_config(
+        page_title="Algorithms step-by-step",
+        page_icon=":hourglass_flowing_sand:",
+        layout="wide",
+        menu_items=MENU_ITEMS,
+    )
+
     algorithm_selection = create_sidebar()
 
     algorithm_information = ALGORITHMS[algorithm_selection]
@@ -107,7 +109,7 @@ def main():
         input_text = algorithm_information[RANDOM_GENERATE_FUNCTION](**all_parameters)
 
     else:
-        input_text = st.text_area("Input of the algorithm", height=500)
+        input_text = st.text_area("Input of the algorithm", height=300)
 
     if not st.button("Run algorithm"):
         return
