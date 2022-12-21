@@ -100,7 +100,6 @@ def main():
     parameters = {}
 
     if random_generated:
-
         parameters_information: Dict[str, List] = algorithm_information[RANDOM_INPUT_PARAMETERS]
         parameters = {name: parameter_input(name, information) for name, information in parameters_information.items()}
         all_parameters = {**parameters, **algorithm_information[RANDOM_PARAMETERS]}
@@ -110,33 +109,26 @@ def main():
     else:
         input_text = st.text_area("Input of the algorithm", height=500)
 
-    if st.button("Run algorithm"):
+    if not st.button("Run algorithm"):
+        return
 
-        function = algorithm_information[FUNCTION]
+    function = algorithm_information[FUNCTION]
 
-        if random_generated:
+    if random_generated:
 
-            validation_function = algorithm_information.get(VALIDATION_RANDOM_PARAMETERS_FUNCTION, None)
-            is_correct, message = (True, None) if validation_function is None else validation_function(**parameters)
+        validation_function = algorithm_information.get(VALIDATION_RANDOM_PARAMETERS_FUNCTION, None)
+        is_correct, message = (True, None) if validation_function is None else validation_function(**parameters)
 
-            if is_correct:
-                render_solution(function, input_text)
-            else:
-                st.error(message)
+    else:
+        validation_function = algorithm_information.get(VALIDATION_INPUT_FUNCTION, None)
+        validation_parameters = algorithm_information.get(VALIDATION_PARAMETERS, {})
 
-        else:
+        is_correct, message = (True, None) if validation_function is None else validation_function(input_text, **validation_parameters)
 
-            validation_function = algorithm_information.get(VALIDATION_INPUT_FUNCTION, None)
-            validation_parameters = algorithm_information.get(VALIDATION_PARAMETERS, {})
-
-            is_correct, message = (True, None) if validation_function is None else validation_function(input_text, **validation_parameters)
-
-            if is_correct:
-                render_solution(function, input_text)
-
-            else:
-                st.error(message)
-
+    if is_correct:
+        render_solution(function, input_text)
+    else:
+        st.error(message)
 
 if __name__ == "__main__":
     main()
