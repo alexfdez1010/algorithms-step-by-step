@@ -11,6 +11,7 @@ MENU_ITEMS = {
 
 }
 
+
 def parameter_input(parameter_name: str, parameter_information: List[Any]) -> Any:
     """
     Render a parameter input based on the information provided
@@ -50,6 +51,7 @@ def render_entry(entry: Union[str, Graph]):
     else:
         st.graphviz_chart(entry, use_container_width=True)
 
+
 def render_solution(algorithm_function, input_text: str):
     """
     Render the solution of the algorithm
@@ -60,8 +62,8 @@ def render_solution(algorithm_function, input_text: str):
     for entry in algorithm_function(input_text):
         render_entry(entry)
 
-def create_sidebar():
 
+def create_sidebar():
     """
     Create the sidebar of the application
     :return: The selected algorithm from the sidebar
@@ -97,7 +99,11 @@ def main():
     st.title(algorithm_selection)
     description = open(f"{DESCRIPTIONS_DIR}/{algorithm_information[DESCRIPTION_FILE]}", "r").read()
     st.markdown(description)
-    random_generated = st.checkbox("Generate random input")
+
+    if algorithm_information[RANDOM_GENERATE_FUNCTION] is not None:
+        random_generated = st.checkbox("Generate random input")
+    else:
+        random_generated = False
 
     parameters = {}
 
@@ -125,12 +131,14 @@ def main():
         validation_function = algorithm_information.get(VALIDATION_INPUT_FUNCTION, None)
         validation_parameters = algorithm_information.get(VALIDATION_PARAMETERS, {})
 
-        is_correct, message = (True, None) if validation_function is None else validation_function(input_text, **validation_parameters)
+        is_correct, message = (True, None) if validation_function is None else validation_function(input_text,
+                                                                                                   **validation_parameters)
 
     if is_correct:
         render_solution(function, input_text)
     else:
         st.error(message)
+
 
 if __name__ == "__main__":
     main()

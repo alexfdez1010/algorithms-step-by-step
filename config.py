@@ -1,9 +1,11 @@
 from enum import Enum
 from typing import Dict, Any
 
+from algorithms.fibonacci import fibonacci
 from algorithms.kruskal import kruskal_algorithm
 from algorithms.prim import prim_algorithm
 from random_generators.generator_graph import random_graph_only_one_component
+from validations.generic_algorithms import only_one_parameter_positive_number
 from validations.validate_graph import validate_only_one_component, validate_number_of_edges
 
 DESCRIPTIONS_DIR = "descriptions"
@@ -78,5 +80,15 @@ ALGORITHMS: Dict[str, Dict[str, Any]] = {
             "weighted": True
         },
         VALIDATION_INPUT_FUNCTION: validate_only_one_component
+    },
+    "Fibonacci using matrix exponentiation": {
+        DESCRIPTION_FILE: "fibonacci.md",
+        FUNCTION: fibonacci,
+        RANDOM_INPUT_PARAMETERS: {},
+        VALIDATION_RANDOM_PARAMETERS_FUNCTION: None,
+        RANDOM_PARAMETERS: {},
+        RANDOM_GENERATE_FUNCTION: None,
+        VALIDATION_PARAMETERS: {},
+        VALIDATION_INPUT_FUNCTION: only_one_parameter_positive_number
     }
 }
