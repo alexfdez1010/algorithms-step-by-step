@@ -8,7 +8,8 @@ from config import *
 IMAGE_SIDEBAR = "resources/sidebar.png"
 
 MENU_ITEMS = {
-
+    "About": "https://github.com/alexfdez1010/streamlit_algorithms",
+    "Report a bug": "https://github.com/alexfdez1010/streamlit_algorithms/issues"
 }
 
 
