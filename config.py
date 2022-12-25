@@ -42,53 +42,57 @@ The value is a dictionary that contains the following keys:
     - VALIDATION_PARAMETERS: the parameters of the validation function
     - VALIDATION_INPUT_FUNCTION: the function that validates the input
 """
-ALGORITHMS: Dict[str, Dict[str, Any]] = {
-    "Prim's Algorithm": {
-        DESCRIPTION_FILE: "prim.md",
-        FUNCTION: prim_algorithm,
-        RANDOM_INPUT_PARAMETERS: {
-            "n": [ParameterType.INT, 3, 20],
-            "m": [ParameterType.INT, 2, 40]
+ALGORITHMS: Dict[str, Dict[str, Dict[str, Any]]] = {
+    "Graphs": {
+        "Prim's Algorithm": {
+            DESCRIPTION_FILE: "prim.md",
+            FUNCTION: prim_algorithm,
+            RANDOM_INPUT_PARAMETERS: {
+                "n": [ParameterType.INT, 3, 20],
+                "m": [ParameterType.INT, 2, 40]
+            },
+            VALIDATION_RANDOM_PARAMETERS_FUNCTION: validate_number_of_edges,
+            RANDOM_PARAMETERS: {
+                "weighted": True,
+                "directed": False
+            },
+            RANDOM_GENERATE_FUNCTION: random_graph_only_one_component,
+            VALIDATION_PARAMETERS: {
+                "directed": False,
+                "weighted": True
+            },
+            VALIDATION_INPUT_FUNCTION: validate_only_one_component
         },
-        VALIDATION_RANDOM_PARAMETERS_FUNCTION: validate_number_of_edges,
-        RANDOM_PARAMETERS: {
-            "weighted": True,
-            "directed": False
-        },
-        RANDOM_GENERATE_FUNCTION: random_graph_only_one_component,
-        VALIDATION_PARAMETERS: {
-            "directed": False,
-            "weighted": True
-        },
-        VALIDATION_INPUT_FUNCTION: validate_only_one_component
+        "Kruskal's Algorithm": {
+            DESCRIPTION_FILE: "kruskal.md",
+            FUNCTION: kruskal_algorithm,
+            RANDOM_INPUT_PARAMETERS: {
+                "n": [ParameterType.INT, 3, 20],
+                "m": [ParameterType.INT, 2, 40]
+            },
+            VALIDATION_RANDOM_PARAMETERS_FUNCTION: validate_number_of_edges,
+            RANDOM_PARAMETERS: {
+                "weighted": True,
+                "directed": False
+            },
+            RANDOM_GENERATE_FUNCTION: random_graph_only_one_component,
+            VALIDATION_PARAMETERS: {
+                "directed": False,
+                "weighted": True
+            },
+            VALIDATION_INPUT_FUNCTION: validate_only_one_component
+        }
     },
-    "Kruskal's Algorithm": {
-        DESCRIPTION_FILE: "kruskal.md",
-        FUNCTION: kruskal_algorithm,
-        RANDOM_INPUT_PARAMETERS: {
-            "n": [ParameterType.INT, 3, 20],
-            "m": [ParameterType.INT, 2, 40]
-        },
-        VALIDATION_RANDOM_PARAMETERS_FUNCTION: validate_number_of_edges,
-        RANDOM_PARAMETERS: {
-            "weighted": True,
-            "directed": False
-        },
-        RANDOM_GENERATE_FUNCTION: random_graph_only_one_component,
-        VALIDATION_PARAMETERS: {
-            "directed": False,
-            "weighted": True
-        },
-        VALIDATION_INPUT_FUNCTION: validate_only_one_component
-    },
-    "Fibonacci using matrix exponentiation": {
-        DESCRIPTION_FILE: "fibonacci.md",
-        FUNCTION: fibonacci,
-        RANDOM_INPUT_PARAMETERS: {},
-        VALIDATION_RANDOM_PARAMETERS_FUNCTION: None,
-        RANDOM_PARAMETERS: {},
-        RANDOM_GENERATE_FUNCTION: None,
-        VALIDATION_PARAMETERS: {},
-        VALIDATION_INPUT_FUNCTION: only_one_parameter_positive_number
+    "Miscellaneous": {
+        "Fibonacci using matrix exponentiation": {
+            DESCRIPTION_FILE: "fibonacci.md",
+            FUNCTION: fibonacci,
+            RANDOM_INPUT_PARAMETERS: {},
+            VALIDATION_RANDOM_PARAMETERS_FUNCTION: None,
+            RANDOM_PARAMETERS: {},
+            RANDOM_GENERATE_FUNCTION: None,
+            VALIDATION_PARAMETERS: {},
+            VALIDATION_INPUT_FUNCTION: only_one_parameter_positive_number
+        }
     }
 }

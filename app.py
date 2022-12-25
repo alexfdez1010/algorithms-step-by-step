@@ -66,20 +66,23 @@ def render_solution(algorithm_function, input_text: str):
 def create_sidebar():
     """
     Create the sidebar of the application
-    :return: The selected algorithm from the sidebar
+
+    :return: The name and the information of the selected algorithm from the sidebar
     """
 
     with st.sidebar:
         st.image(IMAGE_SIDEBAR)
         st.title("Algorithms")
-        algorithm_names = ALGORITHMS.keys()
+        category_names = ALGORITHMS.keys()
+        category_selection = st.selectbox("Select a category", category_names)
+
+        algorithm_names = ALGORITHMS[category_selection].keys()
         algorithm_selection = st.selectbox(
             "Select an algorithm",
-            algorithm_names,
-            index=0
+            algorithm_names
         )
 
-    return algorithm_selection
+    return algorithm_selection, ALGORITHMS[category_selection][algorithm_selection]
 
 
 def main():
@@ -93,9 +96,8 @@ def main():
         menu_items=MENU_ITEMS,
     )
 
-    algorithm_selection = create_sidebar()
+    algorithm_selection, algorithm_information = create_sidebar()
 
-    algorithm_information = ALGORITHMS[algorithm_selection]
     st.title(algorithm_selection)
     description = open(f"{DESCRIPTIONS_DIR}/{algorithm_information[DESCRIPTION_FILE]}", "r").read()
     st.markdown(description)
@@ -131,9 +133,8 @@ def main():
         validation_function = algorithm_information.get(VALIDATION_INPUT_FUNCTION, None)
         validation_parameters = algorithm_information.get(VALIDATION_PARAMETERS, {})
 
-        is_correct, message = (True, None) if validation_function is None else validation_function(input_text,
-                                                                                                   **validation_parameters)
-
+        is_correct, message = (True, None) \
+            if validation_function is None else validation_function(input_text, **validation_parameters)
     if is_correct:
         render_solution(function, input_text)
     else:
