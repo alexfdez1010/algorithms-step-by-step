@@ -77,6 +77,7 @@ def validate_graph(input_graph: str, weighted=True) -> Tuple[bool, Optional[str]
 
     return True, None
 
+
 def validate_only_one_component(input_graph: str, directed: bool, weighted: bool) -> Tuple[bool, Optional[str]]:
     """
     First, validates the input graph. If the input graph is valid, it checks if the graph is connected.
@@ -112,6 +113,7 @@ def validate_only_one_component(input_graph: str, directed: bool, weighted: bool
     else:
         return False, "The graph must only have one connected component"
 
+
 def validate_number_of_edges(n: int, m: int) -> Tuple[bool, Optional[str]]:
     """
     Validates the number of edges in relation to the number of nodes
@@ -120,14 +122,10 @@ def validate_number_of_edges(n: int, m: int) -> Tuple[bool, Optional[str]]:
     :return: A tuple with a boolean and a message. If the boolean is True, the number of edges is valid.
     Otherwise, the message contains the reason.
     """
-    if n-1 > m:
-        return False, "The number of edges is not enough to connect all the nodes"
+    if n - 1 > m:
+        return False, f"The number of edges is not enough to connect all the nodes, the minimum with n={n} is {n - 1}"
 
-    if m > n*(n-1) / 2:
-        return False, "The number of edges is too high"
+    if m > n * (n - 1) / 2:
+        return False, f"The number of edges is too high, the number can surpass {n * (n - 1) // 2} with n={n}"
 
     return True, None
-
-
-
-

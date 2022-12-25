@@ -30,7 +30,7 @@ def matrix_to_markdown(matrix: List[List[float]]) -> str:
     markdown = "\\begin{pmatrix}\n"
 
     for row in matrix:
-        markdown += " & ".join([str(x) for x in row]) + "\\\\\n"
+        markdown += " & ".join([str(x) if x != float('inf') else "\\infty" for x in row]) + "\\\\\n"
 
     markdown += "\\end{pmatrix}\n"
     return markdown

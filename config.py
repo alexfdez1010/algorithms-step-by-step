@@ -2,11 +2,12 @@ from enum import Enum
 from typing import Dict, Any
 
 from algorithms.fibonacci import fibonacci
+from algorithms.floyd_warshall import floyd_warshall
 from algorithms.kruskal import kruskal_algorithm
 from algorithms.prim import prim_algorithm
-from random_generators.generator_graph import random_graph_only_one_component
+from random_generators.generator_graph import random_graph_only_one_component, random_graph
 from validations.generic_algorithms import only_one_parameter_positive_number
-from validations.validate_graph import validate_only_one_component, validate_number_of_edges
+from validations.validate_graph import validate_only_one_component, validate_number_of_edges, validate_graph
 
 DESCRIPTIONS_DIR = "descriptions"
 DESCRIPTION_FILE = "description_file"
@@ -81,6 +82,25 @@ ALGORITHMS: Dict[str, Dict[str, Dict[str, Any]]] = {
                 "weighted": True
             },
             VALIDATION_INPUT_FUNCTION: validate_only_one_component
+        },
+        "Floyd-Warshall Algorithm": {
+            DESCRIPTION_FILE: "floyd_warshall.md",
+            FUNCTION: floyd_warshall,
+            RANDOM_INPUT_PARAMETERS: {
+                "n": [ParameterType.INT, 5, 30],
+                "m": [ParameterType.INT, 6, 50]
+            },
+            VALIDATION_RANDOM_PARAMETERS_FUNCTION: validate_number_of_edges,
+            RANDOM_PARAMETERS: {
+                "weighted": True,
+                "directed": True
+            },
+            RANDOM_GENERATE_FUNCTION: random_graph,
+            VALIDATION_PARAMETERS: {
+                "directed": True,
+                "weighted": True
+            },
+            VALIDATION_INPUT_FUNCTION: validate_graph
         }
     },
     "Miscellaneous": {

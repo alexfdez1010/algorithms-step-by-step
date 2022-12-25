@@ -9,6 +9,8 @@ def fibonacci(input_string):
     """
     n = int(input_string)
 
+    yield "## Fibonacci using matrix exponentiation resolution"
+
     if n == 0:
         return 0
 
@@ -31,7 +33,7 @@ def __matrix_exponentiation(matrix: List[List[float]], n: int) -> Tuple[List[Lis
     """
     if n <= 1:
         markdown_list = [
-            f"## n = {n}",
+            f"### n = {n}",
             f"We start with the following matrix:\n",
             latex_to_markdown(matrix_to_markdown(matrix))
         ]
