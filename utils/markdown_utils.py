@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional, Any
 
 
 def latex_wrapper(function):
@@ -51,3 +51,37 @@ def matrix_multiplication_to_markdown(matrix1: List[List[float]],
     markdown += "= \n"
     markdown += matrix_to_markdown(result)
     return markdown
+
+
+def markdown_table(data: List[List[Any]],
+                   headers_row: Optional[List[str]] = None,
+                   headers_column: Optional[List[str]] = None) -> str:
+    """
+    Convert a list of lists to a Markdown table.
+    :param data: The data to convert.
+    :param headers_row: The headers for the rows.
+    :param headers_column: The headers for the columns.
+    """
+
+    if not isinstance(data[0][0], str):
+        data = [[str(x) for x in row] for row in data]
+
+    rows = []
+
+    if headers_column:
+        headers_row = [""] + headers_row
+
+    print(headers_row)
+
+    if headers_row:
+        rows.append("| " + " | ".join(headers_row) + " |")
+        rows.append("| " + " | ".join([":---:"] * len(headers_row)) + " |")
+
+    for row in data:
+        rows.append("| " + " | ".join(row) + " |")
+
+    if headers_column:
+        for i, row in enumerate(rows[2:], 2):
+            rows[i] = f"| **{headers_column[i - 2]}** {row}"
+
+    return "\n".join(rows)

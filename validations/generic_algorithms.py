@@ -27,3 +27,20 @@ def only_one_parameter_positive_number(input_string) -> Tuple[bool, Optional[str
 
     return True, None
 
+
+def two_strings(input_string) -> Tuple[bool, Optional[str]]:
+    """
+    Checks if the input string has two strings
+    :param input_string: The input string
+    :return: True if the input string has two strings, False otherwise
+    """
+    lines = input_string.splitlines()
+    if len(lines) != 2:
+        return False, "The input string must contain two lines"
+
+    for line in lines:
+        line = line.split()
+        if len(line) != 1:
+            return False, "The input string must contain two strings"
+
+    return True, None

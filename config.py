@@ -1,12 +1,14 @@
 from enum import Enum
 from typing import Dict, Any
 
+from algorithms.edit_distance import edit_distance
 from algorithms.fibonacci import fibonacci
 from algorithms.floyd_warshall import floyd_warshall
 from algorithms.kruskal import kruskal_algorithm
 from algorithms.prim import prim_algorithm
 from random_generators.generator_graph import random_graph_only_one_component, random_graph
-from validations.generic_algorithms import only_one_parameter_positive_number
+from random_generators.generator_string import generate_two_words
+from validations.generic_algorithms import only_one_parameter_positive_number, two_strings
 from validations.validate_graph import validate_only_one_component, validate_number_of_edges, validate_graph
 
 DESCRIPTIONS_DIR = "descriptions"
@@ -101,6 +103,21 @@ ALGORITHMS: Dict[str, Dict[str, Dict[str, Any]]] = {
                 "weighted": True
             },
             VALIDATION_INPUT_FUNCTION: validate_graph
+        }
+    },
+    "Dynamic Programming": {
+        "Edit Distance": {
+            DESCRIPTION_FILE: "edit_distance.md",
+            FUNCTION: edit_distance,
+            RANDOM_INPUT_PARAMETERS: {
+                "n": [ParameterType.INT, 5, 30],
+                "m": [ParameterType.INT, 5, 30]
+            },
+            VALIDATION_RANDOM_PARAMETERS_FUNCTION: None,
+            RANDOM_PARAMETERS: {},
+            RANDOM_GENERATE_FUNCTION: generate_two_words,
+            VALIDATION_PARAMETERS: {},
+            VALIDATION_INPUT_FUNCTION: two_strings
         }
     },
     "Miscellaneous": {
