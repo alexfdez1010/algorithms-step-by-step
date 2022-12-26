@@ -17,3 +17,7 @@ makes it suitable for use on large graphs, although other algorithms may be fast
 
 Overall, the Floyd–Warshall algorithm is a useful tool for finding the shortest paths between all pairs of vertices in a
 graph, and is particularly useful for graphs with negative edge weights.
+
+First, $n$ and $m$ are given in the first line, where $n$ is the number of vertices and $m$ is the number of edges.
+Then, $m$ lines follow, each containing three integers $u$, $v$ and $w$, where $u$ and $v$ are the vertices connected by
+the edge and $w$ is the weight of the edge.

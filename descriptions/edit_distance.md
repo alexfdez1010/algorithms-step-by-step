@@ -24,3 +24,5 @@ matrix[i][j] = min(matrix[i-1][j] + 1,   # insertion
 ```
 
 4. The edit distance between the two strings is the value in the bottom-right cell of the matrix.
+
+The input must be two string in two different lines.

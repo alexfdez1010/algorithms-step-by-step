@@ -38,4 +38,7 @@ Thus, F(3) = 2.
 
 We can continue this process to calculate the n-th term of the Fibonacci sequence for any value of n.
 
-Note that this method is much faster than the traditional recursive method for calculating the Fibonacci sequence, because it only requires O(log n) matrix multiplications instead of O(n) recursive calls.
+Note that this method is much faster than the traditional recursive method for calculating the Fibonacci sequence,
+because it only requires O(log n) matrix multiplications instead of O(n) recursive calls.
+
+The input must be a single integer n in only one line.
