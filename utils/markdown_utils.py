@@ -71,8 +71,6 @@ def markdown_table(data: List[List[Any]],
     if headers_column:
         headers_row = [""] + headers_row
 
-    print(headers_row)
-
     if headers_row:
         rows.append("| " + " | ".join(headers_row) + " |")
         rows.append("| " + " | ".join([":---:"] * len(headers_row)) + " |")
