@@ -63,3 +63,17 @@ def random_graph_only_one_component(n: int, m: int, weighted: bool = True, direc
             output += f"{u} {v}\n"
 
     return output
+
+
+def random_graph_with_source_vertex(n: int, m: int, weighted: bool = True, directed: bool = True) -> str:
+    """
+    Create an input string for a random graph with n vertices and m edges that has a source vertex in the last line.
+    :param n: number of vertices
+    :param m: number of edges
+    :param weighted: whether the graph is weighted
+    :param directed: whether the graph is directed
+    :return: input string for a random graph with a source vertex
+    """
+    output = random_graph(n, m, weighted, directed)
+    output += f"{randint(0, n - 1)}\n"
+    return output

@@ -1,4 +1,4 @@
-from typing import Optional, List, Union
+from typing import Union
 
 from graphviz import Graph, Digraph
 
@@ -7,7 +7,7 @@ from utils.draw_utils import draw_graph, draw_disjoint_sets
 from utils.graph_utils import input_to_adjacency_list, adjacency_list_to_list_of_edges
 
 
-def kruskal_algorithm(input_graph: str) -> Optional[List[Union[str, Graph, Digraph]]]:
+def kruskal_algorithm(input_graph: str) -> Union[str, Graph, Digraph]:
     """
     Kruskal's algorithm for finding the minimum spanning tree of a graph
     :param input_graph: string representation of the graph

@@ -1,15 +1,18 @@
 from enum import Enum
 from typing import Dict, Any
 
+from algorithms.dijkstra import dijkstra
 from algorithms.edit_distance import edit_distance
 from algorithms.fibonacci import fibonacci
 from algorithms.floyd_warshall import floyd_warshall
 from algorithms.kruskal import kruskal_algorithm
 from algorithms.prim import prim_algorithm
-from random_generators.generator_graph import random_graph_only_one_component, random_graph
+from random_generators.generator_graph import random_graph_only_one_component, random_graph, \
+    random_graph_with_source_vertex
 from random_generators.generator_string import generate_two_words
 from validations.generic_algorithms import only_one_parameter_positive_number, two_strings
-from validations.validate_graph import validate_only_one_component, validate_number_of_edges, validate_graph
+from validations.validate_graph import validate_only_one_component, validate_number_of_edges, validate_graph, \
+    validate_graph_with_source_vertex
 
 DESCRIPTIONS_DIR = "descriptions"
 DESCRIPTION_FILE = "description_file"
@@ -103,6 +106,24 @@ ALGORITHMS: Dict[str, Dict[str, Dict[str, Any]]] = {
                 "weighted": True
             },
             VALIDATION_INPUT_FUNCTION: validate_graph
+        },
+        "Dijkstra's Algorithm": {
+            DESCRIPTION_FILE: "dijkstra.md",
+            FUNCTION: dijkstra,
+            RANDOM_INPUT_PARAMETERS: {
+                "n": [ParameterType.INT, 5, 30],
+                "m": [ParameterType.INT, 6, 50]
+            },
+            VALIDATION_RANDOM_PARAMETERS_FUNCTION: validate_number_of_edges,
+            RANDOM_PARAMETERS: {
+                "weighted": True,
+                "directed": False
+            },
+            RANDOM_GENERATE_FUNCTION: random_graph_with_source_vertex,
+            VALIDATION_PARAMETERS: {
+                "weighted": True
+            },
+            VALIDATION_INPUT_FUNCTION: validate_graph_with_source_vertex
         }
     },
     "Dynamic Programming": {

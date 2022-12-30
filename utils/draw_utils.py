@@ -1,4 +1,5 @@
 from typing import List, Union, Tuple, Set
+
 from graphviz import Digraph, Graph
 
 from data_structures.disjoint_set_union import DisjointSetUnion
@@ -7,8 +8,8 @@ from data_structures.disjoint_set_union import DisjointSetUnion
 def draw_graph(n: int, edges: List[Union[Tuple[int, int], Tuple[int, int, float]]],
                weighted: bool = True,
                directed: bool = True,
-               edges_selected: Set[Tuple[int,int]] = None) -> Graph:
-
+               edges_selected: Set[Tuple[int, int]] = None,
+               nodes_selected: Set[int] = None) -> Graph:
     """
     Create a graphviz graph from a list of edges
     :param n: number of nodes
@@ -16,6 +17,7 @@ def draw_graph(n: int, edges: List[Union[Tuple[int, int], Tuple[int, int, float]
     :param weighted: whether the graph is weighted or not
     :param directed: whether the graph is directed or not
     :param edges_selected: set of edges to be highlighted, if is None, no edges will be highlighted
+    :param nodes_selected: set of nodes to be highlighted, if is None, no nodes will be highlighted
     :return: graphviz graph
     """
 
@@ -25,10 +27,16 @@ def draw_graph(n: int, edges: List[Union[Tuple[int, int], Tuple[int, int, float]
     else:
         color = "red"
 
+    if nodes_selected is None:
+        nodes_selected = []
+        node_color = "black"
+    else:
+        node_color = "red"
+
     graph = Graph() if not directed else Digraph()
 
     for i in range(n):
-        graph.node(str(i), shape="circle")
+        graph.node(str(i), shape="circle", color="green" if i in nodes_selected else node_color)
 
     if directed:
 

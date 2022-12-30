@@ -129,3 +129,42 @@ def validate_number_of_edges(n: int, m: int) -> Tuple[bool, Optional[str]]:
         return False, f"The number of edges is too high, the number can surpass {n * (n - 1) // 2} with n={n}"
 
     return True, None
+
+
+def validate_graph_with_source_vertex(input_graph: str, weighted=True) -> Tuple[bool, Optional[str]]:
+    """
+    Validates the input graph. It must have a source vertex in the last line.
+
+    Example input:
+    6 8
+    0 1 3
+    0 2 1
+    0 3 8
+    1 2 2
+    1 4 5
+    2 3 4
+    2 4 5
+    2 5 6
+    0
+    :param input_graph: The input graph
+    :param weighted: Whether the graph is weighted or not
+
+    :return: A tuple with a boolean and a message. If the boolean is True, the graph is valid.
+    If the boolean is False, then the graph is not valid and the message contains the reason.
+    """
+    valid, message = validate_graph(input_graph[:-1], weighted)
+    if not valid:
+        return False, message
+
+    lines = input_graph.splitlines()
+    source_vertex = lines[-1]
+
+    if not source_vertex.isdigit():
+        return False, "The source vertex must be an integer"
+
+    source_vertex = int(source_vertex)
+    n = int(lines[0].split()[0])
+    if not 0 <= source_vertex < n:
+        return False, "The source vertex must be a valid node"
+
+    return True, None
