@@ -32,7 +32,7 @@ def dijkstra(input_graph: str) -> Union[str, Graph]:
         distances[edge[0]] = edge[1]
         previous_nodes[edge[0]] = u
         queue.put((edge[1], edge[0]))
-        yield f"Added the edge {edge[0]} with distance {edge[1]} to the priority queue\n"
+        yield f"Added the edge from {u} to {edge[0]} with distance {edge[1]} to the priority queue\n"
 
     yield f"The initial distances from the node {u} are:\n"
     yield latex_to_markdown(matrix_to_markdown([distances]))
@@ -50,7 +50,9 @@ def dijkstra(input_graph: str) -> Union[str, Graph]:
             new_distance = distances[node] + edge[1]
             if distances[edge[0]] > new_distance:
                 yield f"Updated the distance to the node {edge[0]} from {distances[edge[0]]} to {new_distance}\n"
-                yield f"Added the edge {edge[0]} with distance {distances[edge[0]]} to the priority queue\n"
+                yield f"Added the edge from {node} to {edge[0]} with distance " \
+                      f"{edge[1]} to the priority queue\n"
+
                 distances[edge[0]] = distances[node] + edge[1]
                 previous_nodes[edge[0]] = node
                 queue.put((distances[edge[0]], edge[0]))
@@ -62,7 +64,7 @@ def dijkstra(input_graph: str) -> Union[str, Graph]:
             len(graph), edge_list, weighted=True, directed=False, edges_selected=__get_edges_selected(previous_nodes)
         )
 
-    yield f"### Result\n"
+    yield "### Final result\n"
     yield f"The final distances from the node {u} are:\n"
     yield latex_to_markdown(matrix_to_markdown([distances]))
     yield f"The edges that define the minimum paths are marked in green:\n"

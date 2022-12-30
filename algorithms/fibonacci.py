@@ -21,6 +21,7 @@ def fibonacci(input_string):
     for markdown in markdown_list:
         yield markdown
 
+    yield "### Final result\n"
     yield latex_to_markdown(matrix_to_markdown(result))
     yield f"The {n}th fibonacci is the number located in the top left of the matrix, thus the result is {result[0][0]}"
 
@@ -42,7 +43,7 @@ def __matrix_exponentiation(matrix: List[List[float]], n: int) -> Tuple[List[Lis
     if n & 1:
         temp_matrix, markdown_list = __matrix_exponentiation(matrix, n - 1)
         result = __matrix_multiplication(matrix, temp_matrix)
-        markdown_list.append(f"## n = {n}\n")
+        markdown_list.append(f"### n = {n}\n")
         markdown_list.append(f"As {n} is odd, we need to decrease it by 1 to get an even number")
         markdown_list.append(f"This can be easily achieved by multiplying the matrix by the original")
         markdown_list.append(latex_to_markdown(matrix_multiplication_to_markdown(matrix, temp_matrix, result)))
@@ -50,7 +51,7 @@ def __matrix_exponentiation(matrix: List[List[float]], n: int) -> Tuple[List[Lis
 
     temp_matrix, markdown_list = __matrix_exponentiation(matrix, n // 2)
     result = __matrix_multiplication(temp_matrix, temp_matrix)
-    markdown_list.append(f"## n = {n}\n")
+    markdown_list.append(f"### n = {n}\n")
     markdown_list.append(f"As {n} is even, we can get this power by squaring the matrix to the power {n // 2}")
     markdown_list.append(latex_to_markdown(matrix_multiplication_to_markdown(temp_matrix, temp_matrix, result)))
     return result, markdown_list

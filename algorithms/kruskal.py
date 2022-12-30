@@ -59,7 +59,7 @@ def kruskal_algorithm(input_graph: str) -> Union[str, Graph, Digraph]:
 
         edge_index += 1
 
-    yield "## Final result\n"
+    yield "### Final result\n"
     yield "The final graph is the following:"
     yield draw_graph(len(graph), edge_list, weighted=True, directed=False, edges_selected=edges_selected)
     yield f"The total weight of the MST is {total_weight}"

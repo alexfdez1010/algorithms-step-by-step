@@ -60,8 +60,47 @@ def render_solution(algorithm_function, input_text: str):
     :param algorithm_function: Function to run the algorithm
     :param input_text: Input of the algorithm
     """
-    for entry in algorithm_function(input_text):
-        render_entry(entry)
+    generator_entries = algorithm_function(input_text)
+
+    entry = next(generator_entries)
+
+    while entry:
+
+        if is_step(entry):
+
+            with st.expander(entry[4:]):
+                render_entry(entry)
+                entry = next_wrapper(generator_entries)
+
+                while entry and not is_step(entry):
+                    render_entry(entry)
+                    entry = next_wrapper(generator_entries)
+
+        else:
+            render_entry(entry)
+            entry = next_wrapper(generator_entries)
+
+
+def is_step(entry: Union[str, Graph]) -> bool:
+    """
+    Check if an entry is the header of a step
+    :param entry: Entry to check
+    """
+    if isinstance(entry, str):
+        return entry.startswith("###")
+
+    return False
+
+
+def next_wrapper(generator):
+    """
+    Wrapper for the next function of the generator to return None if the generator is finished
+    :param generator: Generator to wrap
+    """
+    try:
+        return next(generator)
+    except StopIteration:
+        return None
 
 
 def create_sidebar():

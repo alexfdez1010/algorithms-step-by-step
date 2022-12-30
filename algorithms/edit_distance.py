@@ -36,8 +36,11 @@ def edit_distance(input_string: str) -> str:
             else:
                 dp[i][j] = min(dp[i - 1][j - 1], dp[i - 1][j], dp[i][j - 1]) + 1
 
+        yield f"After filling the row {i}, the table is:"
         yield markdown_table(dp, headers_rows, headers_columns)
+        yield "\n"
 
+    yield "### Final result\n"
     yield f"The final table is:"
     yield markdown_table(dp, headers_rows, headers_columns)
     yield f"The edit distance between {string1} and {string2} is {dp[n][m]}."

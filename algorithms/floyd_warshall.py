@@ -34,12 +34,13 @@ def floyd_warshall(input_graph):
             for j in range(n):
 
                 if distance[i][k] + distance[k][j] < distance[i][j]:
-                    yield f"The distance between {i} and {j} has been updated "
-                    yield f"as the path {i} -> {k} -> {j} is shorter than the current best path {i} -> {j}\n"
+                    yield f"The distance between {i} and {j} has been updated as the path " \
+                          f"{i} -> {k} -> {j} is shorter than the current best path {i} -> {j}\n"
                     distance[i][j] = distance[i][k] + distance[k][j]
 
         yield f"The distance matrix after step {k + 1} is:\n"
         yield latex_to_markdown(matrix_to_markdown(distance))
 
+    yield "### Final result\n"
     yield f"The final distance matrix is:\n"
     yield latex_to_markdown(matrix_to_markdown(distance))

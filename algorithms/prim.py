@@ -1,12 +1,11 @@
+from queue import PriorityQueue
 from random import randint
 from typing import Union, List, Optional
 
 from graphviz import Graph
 
-from utils.graph_utils import input_to_adjacency_list, adjacency_list_to_list_of_edges
 from utils.draw_utils import draw_graph
-
-from queue import PriorityQueue
+from utils.graph_utils import input_to_adjacency_list, adjacency_list_to_list_of_edges
 
 
 def prim_algorithm(input_string: str) -> Optional[List[Union[str, Graph]]]:
@@ -20,7 +19,7 @@ def prim_algorithm(input_string: str) -> Optional[List[Union[str, Graph]]]:
 
     edge_list = adjacency_list_to_list_of_edges(graph)
 
-    yield "## Prim's algorithm resolution"
+    yield "# Prim's algorithm resolution"
     yield "The initial graph is the following:"
     yield draw_graph(len(graph), edge_list, weighted=True, directed=False)
 
@@ -60,7 +59,7 @@ def prim_algorithm(input_string: str) -> Optional[List[Union[str, Graph]]]:
         yield draw_graph(len(graph), edge_list, weighted=True, directed=False, edges_selected=edges_selected)
         step += 1
 
-    yield "## Final result\n"
+    yield "### Final result\n"
     yield "The final graph is the following:"
     yield draw_graph(len(graph), edge_list, weighted=True, directed=False, edges_selected=edges_selected)
     yield f"The total weight of the MST is {total_weight}"
