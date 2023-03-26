@@ -23,7 +23,7 @@ The input for the algorithms is specified by the user in the web app. Also, the 
 1. Clone the repository:
 
 ```bash
-https://github.com/alexfdez1010/streamlit_algorithms.git
+git clone https://github.com/alexfdez1010/algorithms-step-by-step.git
 ```
 
 2. Install the dependencies:
