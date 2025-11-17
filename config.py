@@ -7,12 +7,23 @@ from algorithms.fibonacci import fibonacci
 from algorithms.floyd_warshall import floyd_warshall
 from algorithms.kruskal import kruskal_algorithm
 from algorithms.prim import prim_algorithm
-from random_generators.generator_graph import random_graph_only_one_component, random_graph, \
-    random_graph_with_source_vertex
+from algorithms.smith_waterman import smith_waterman
+from random_generators.generator_graph import (
+    random_graph_only_one_component,
+    random_graph,
+    random_graph_with_source_vertex,
+)
 from random_generators.generator_string import generate_two_words
-from validations.generic_algorithms import only_one_parameter_positive_number, two_strings
-from validations.validate_graph import validate_only_one_component, validate_number_of_edges, validate_graph, \
-    validate_graph_with_source_vertex
+from validations.generic_algorithms import (
+    only_one_parameter_positive_number,
+    two_strings,
+)
+from validations.validate_graph import (
+    validate_only_one_component,
+    validate_number_of_edges,
+    validate_graph,
+    validate_graph_with_source_vertex,
+)
 
 DESCRIPTIONS_DIR = "descriptions"
 DESCRIPTION_FILE = "description_file"
@@ -29,6 +40,7 @@ class ParameterType(Enum):
     """
     Enum for the type of the parameter
     """
+
     INT = "int"
     FLOAT = "float"
     STRING = "string"
@@ -55,76 +67,53 @@ ALGORITHMS: Dict[str, Dict[str, Dict[str, Any]]] = {
             FUNCTION: prim_algorithm,
             RANDOM_INPUT_PARAMETERS: {
                 "n": [ParameterType.INT, 3, 20],
-                "m": [ParameterType.INT, 2, 40]
+                "m": [ParameterType.INT, 2, 40],
             },
             VALIDATION_RANDOM_PARAMETERS_FUNCTION: validate_number_of_edges,
-            RANDOM_PARAMETERS: {
-                "weighted": True,
-                "directed": False
-            },
+            RANDOM_PARAMETERS: {"weighted": True, "directed": False},
             RANDOM_GENERATE_FUNCTION: random_graph_only_one_component,
-            VALIDATION_PARAMETERS: {
-                "directed": False,
-                "weighted": True
-            },
-            VALIDATION_INPUT_FUNCTION: validate_only_one_component
+            VALIDATION_PARAMETERS: {"directed": False, "weighted": True},
+            VALIDATION_INPUT_FUNCTION: validate_only_one_component,
         },
         "Kruskal's Algorithm": {
             DESCRIPTION_FILE: "kruskal.md",
             FUNCTION: kruskal_algorithm,
             RANDOM_INPUT_PARAMETERS: {
                 "n": [ParameterType.INT, 3, 20],
-                "m": [ParameterType.INT, 2, 40]
+                "m": [ParameterType.INT, 2, 40],
             },
             VALIDATION_RANDOM_PARAMETERS_FUNCTION: validate_number_of_edges,
-            RANDOM_PARAMETERS: {
-                "weighted": True,
-                "directed": False
-            },
+            RANDOM_PARAMETERS: {"weighted": True, "directed": False},
             RANDOM_GENERATE_FUNCTION: random_graph_only_one_component,
-            VALIDATION_PARAMETERS: {
-                "directed": False,
-                "weighted": True
-            },
-            VALIDATION_INPUT_FUNCTION: validate_only_one_component
+            VALIDATION_PARAMETERS: {"directed": False, "weighted": True},
+            VALIDATION_INPUT_FUNCTION: validate_only_one_component,
         },
         "Floyd-Warshall Algorithm": {
             DESCRIPTION_FILE: "floyd_warshall.md",
             FUNCTION: floyd_warshall,
             RANDOM_INPUT_PARAMETERS: {
                 "n": [ParameterType.INT, 5, 30],
-                "m": [ParameterType.INT, 6, 50]
+                "m": [ParameterType.INT, 6, 50],
             },
             VALIDATION_RANDOM_PARAMETERS_FUNCTION: validate_number_of_edges,
-            RANDOM_PARAMETERS: {
-                "weighted": True,
-                "directed": True
-            },
+            RANDOM_PARAMETERS: {"weighted": True, "directed": True},
             RANDOM_GENERATE_FUNCTION: random_graph,
-            VALIDATION_PARAMETERS: {
-                "directed": True,
-                "weighted": True
-            },
-            VALIDATION_INPUT_FUNCTION: validate_graph
+            VALIDATION_PARAMETERS: {"directed": True, "weighted": True},
+            VALIDATION_INPUT_FUNCTION: validate_graph,
         },
         "Dijkstra's Algorithm": {
             DESCRIPTION_FILE: "dijkstra.md",
             FUNCTION: dijkstra,
             RANDOM_INPUT_PARAMETERS: {
                 "n": [ParameterType.INT, 5, 30],
-                "m": [ParameterType.INT, 6, 50]
+                "m": [ParameterType.INT, 6, 50],
             },
             VALIDATION_RANDOM_PARAMETERS_FUNCTION: validate_number_of_edges,
-            RANDOM_PARAMETERS: {
-                "weighted": True,
-                "directed": False
-            },
+            RANDOM_PARAMETERS: {"weighted": True, "directed": False},
             RANDOM_GENERATE_FUNCTION: random_graph_with_source_vertex,
-            VALIDATION_PARAMETERS: {
-                "weighted": True
-            },
-            VALIDATION_INPUT_FUNCTION: validate_graph_with_source_vertex
-        }
+            VALIDATION_PARAMETERS: {"weighted": True},
+            VALIDATION_INPUT_FUNCTION: validate_graph_with_source_vertex,
+        },
     },
     "Dynamic Programming": {
         "Edit Distance": {
@@ -132,14 +121,27 @@ ALGORITHMS: Dict[str, Dict[str, Dict[str, Any]]] = {
             FUNCTION: edit_distance,
             RANDOM_INPUT_PARAMETERS: {
                 "n": [ParameterType.INT, 5, 30],
-                "m": [ParameterType.INT, 5, 30]
+                "m": [ParameterType.INT, 5, 30],
             },
             VALIDATION_RANDOM_PARAMETERS_FUNCTION: None,
             RANDOM_PARAMETERS: {},
             RANDOM_GENERATE_FUNCTION: generate_two_words,
             VALIDATION_PARAMETERS: {},
-            VALIDATION_INPUT_FUNCTION: two_strings
-        }
+            VALIDATION_INPUT_FUNCTION: two_strings,
+        },
+        "Smith-Waterman Algorithm": {
+            DESCRIPTION_FILE: "smith_waterman.md",
+            FUNCTION: smith_waterman,
+            RANDOM_INPUT_PARAMETERS: {
+                "n": [ParameterType.INT, 5, 30],
+                "m": [ParameterType.INT, 5, 30],
+            },
+            VALIDATION_RANDOM_PARAMETERS_FUNCTION: None,
+            RANDOM_PARAMETERS: {},
+            RANDOM_GENERATE_FUNCTION: generate_two_words,
+            VALIDATION_PARAMETERS: {},
+            VALIDATION_INPUT_FUNCTION: two_strings,
+        },
     },
     "Miscellaneous": {
         "Fibonacci using matrix exponentiation": {
@@ -150,7 +152,7 @@ ALGORITHMS: Dict[str, Dict[str, Dict[str, Any]]] = {
             RANDOM_PARAMETERS: {},
             RANDOM_GENERATE_FUNCTION: None,
             VALIDATION_PARAMETERS: {},
-            VALIDATION_INPUT_FUNCTION: only_one_parameter_positive_number
+            VALIDATION_INPUT_FUNCTION: only_one_parameter_positive_number,
         }
-    }
+    },
 }

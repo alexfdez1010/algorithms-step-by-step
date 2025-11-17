@@ -17,6 +17,7 @@ The input for the algorithms is specified by the user in the web app. Also, the 
 - [Floyd-Warshall algorithm](descriptions/floyd_warshall.md)
 - [Fibonacci with matrix exponentiation](descriptions/fibonacci.md)
 - [Edit distance](descriptions/edit_distance.md)
+- [Smith-Waterman algorithm](descriptions/smith_waterman.md)
 
 ## Setup
 
