@@ -9,9 +9,9 @@ def smith_waterman(input_string: str) -> str:
     :param input_string: Two sequences separated by newlines
     :return: Generator yielding strings and tables showing the algorithm steps
     """
-    lines = input_string.splitlines()
-    sequence1 = lines[0]
-    sequence2 = lines[1]
+    lines = input_string.strip().splitlines()
+    sequence1 = lines[0].strip()
+    sequence2 = lines[1].strip()
 
     n = len(sequence1)
     m = len(sequence2)

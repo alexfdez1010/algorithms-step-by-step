@@ -13,7 +13,10 @@ from random_generators.generator_graph import (
     random_graph,
     random_graph_with_source_vertex,
 )
-from random_generators.generator_string import generate_two_words
+from random_generators.generator_string import (
+    generate_two_words,
+    generate_two_dna_sequences,
+)
 from validations.generic_algorithms import (
     only_one_parameter_positive_number,
     two_strings,
@@ -138,7 +141,7 @@ ALGORITHMS: Dict[str, Dict[str, Dict[str, Any]]] = {
             },
             VALIDATION_RANDOM_PARAMETERS_FUNCTION: None,
             RANDOM_PARAMETERS: {},
-            RANDOM_GENERATE_FUNCTION: generate_two_words,
+            RANDOM_GENERATE_FUNCTION: generate_two_dna_sequences,
             VALIDATION_PARAMETERS: {},
             VALIDATION_INPUT_FUNCTION: two_strings,
         },
